@@ -57,7 +57,9 @@ class UserState with ChangeNotifier {
   Future<bool> loginWithGoogle(String displayName, String email) async {
     return await userApiService.loginWithGoogle(displayName, email);
   }
-
+  Future<bool> loginWithApple(String email) async {
+    return await userApiService.loginWithApple(email);
+  }
   Future<bool> loginWithLine(String? lineId, String? displayName) async {
     if (lineId != null && displayName != null) {
       return await userApiService.loginWithLine(lineId, displayName);

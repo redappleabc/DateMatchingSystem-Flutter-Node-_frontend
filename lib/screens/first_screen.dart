@@ -126,6 +126,85 @@ class _FirstScreenState extends State<FirstScreen> {
           AppleIDAuthorizationScopes.fullName,
         ],
       );
+      if (credential != null && credential.email != "") {
+        final isLogin = await Provider.of<UserState>(context, listen: false).loginWithApple(credential.email!);
+          if (isLogin) {
+            Navigator.pushNamed(context, "/loginhome");
+          } else {
+            showDialog(
+                barrierDismissible: false,
+                context: context,
+                builder: (_) => Center(
+                    // Aligns the container to center
+                    child: Container(
+                  // A simplified version of dialog.
+                  width: 300,
+                  height: 150,
+                  padding:
+                      const EdgeInsets.only(top: 35),
+                  decoration: BoxDecoration(
+                      borderRadius:
+                          BorderRadius.circular(10),
+                      color: AppColors.primaryWhite),
+                  child: Column(
+                    crossAxisAlignment:
+                        CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        "AppleIDログインに失敗しました。",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color:
+                                AppColors.primaryBlack,
+                            fontWeight:
+                                FontWeight.normal,
+                            fontSize: 15,
+                            letterSpacing: -1,
+                            decoration:
+                                TextDecoration.none),
+                      ),
+                      const SizedBox(
+                        height: 24,
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.symmetric(
+                                horizontal: 10),
+                        child: Container(
+                          width: 343,
+                          height: 42,
+                          margin: const EdgeInsets.only(
+                              top: 5),
+                          decoration: BoxDecoration(
+                              border: Border(
+                                  top: BorderSide(
+                                      color: AppColors
+                                          .secondaryGray
+                                          .withOpacity(
+                                              0.5)))),
+                          child: MaterialButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: Center(
+                              child: CustomText(
+                                  text: "OK",
+                                  fontSize: 15,
+                                  fontWeight:
+                                      FontWeight.normal,
+                                  lineHeight: 1,
+                                  letterSpacing: -1,
+                                  color: AppColors
+                                      .alertBlue),
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                )));
+          }
+      }
       print(credential);
     } catch (e) {
       print(e);

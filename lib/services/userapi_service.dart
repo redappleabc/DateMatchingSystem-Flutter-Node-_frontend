@@ -106,6 +106,34 @@ class UserApiService {
     }
   }
 
+  Future<bool> loginWithApple(String email) async {
+    print(email);
+    final response = await http.post(
+      Uri.parse('$baseUrl/api/auth/apple_login'),
+      body: jsonEncode(
+          <String, String>{'email': email}),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    );
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      int userId = data['id'];
+      int? gender = data['gender'];
+      String accessToken = data['accessToken'];
+      String refreshToken = data['refreshToken'];
+      await storage.write(key: 'userId', value: jsonEncode(userId));
+      if (gender != null) {
+        await storage.write(key: 'gender', value: gender.toString());
+      }
+      await storage.write(key: 'accessToken', value: accessToken);
+      await storage.write(key: 'refreshToken', value: refreshToken);
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   Future<bool> loginWithLine(String lineId, String displayName) async {
     final response = await http.post(
       Uri.parse('$baseUrl/api/auth/line_login'),
