@@ -272,32 +272,41 @@ class _LoginHomeScreenState extends State<LoginHomeScreen> {
                         )
                       ],
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top:56),
-                    child: Column(
-                      children: [
-                        CustomButton(
-                          title: "つぎへ",
-                          width: 343,
-                          height: 45,
-                          fontSize: 17, 
-                          fontWeight: FontWeight.normal, 
-                          color: _agreeCard.length != 2?AppColors.secondaryGreen.withOpacity(0.5):AppColors.secondaryGreen, 
-                          titleColor: AppColors.primaryWhite, 
-                          onTap: () async{ 
-                            if(_agreeCard.length == 2){
-                              Navigator.pushNamed(context, "/registerprofile_first");
-                            }
-                          }
-                        ),
-                      ],
-                    ),
-                  ),
+                  ),     
                  ],
                ),
              ),
            ),
+           Center(
+              child: CustomContainer(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom:100),
+                      child: Column(
+                        children: [
+                          CustomButton(
+                            title: "つぎへ",
+                            width: 343,
+                            height: 45,
+                            fontSize: 17, 
+                            fontWeight: FontWeight.normal, 
+                            color: _agreeCard.length != 2?AppColors.secondaryGreen.withOpacity(0.5):AppColors.secondaryGreen, 
+                            titleColor: AppColors.primaryWhite, 
+                            onTap: () async{ 
+                              if(_agreeCard.length == 2){
+                                Navigator.pushNamed(context, "/registerprofile_first");
+                              }
+                            }
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+           )
           
         ],
       )
