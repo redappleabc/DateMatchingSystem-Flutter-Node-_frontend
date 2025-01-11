@@ -27,13 +27,12 @@ void main() async {
   OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
   OneSignal.initialize(dotenv.get('APP_ID'));
   OneSignal.Notifications.requestPermission(true);
-  LineSDK.instance.setup(dotenv.get('CHANNEL_ID')).then((_) {
+  await LineSDK.instance.setup(dotenv.get('CHANNEL_ID')).then((_) {
     print("LineSDK Prepared");
   });
   // debugPaintSizeEnabled = true;
   runApp(const MyApp());
 }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

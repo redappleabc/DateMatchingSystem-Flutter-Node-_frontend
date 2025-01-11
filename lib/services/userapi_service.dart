@@ -1588,7 +1588,6 @@ class UserApiService {
     } else {
       return false;
     }
-    
   }
 
   Future<bool> getIsRegisterd() async {
