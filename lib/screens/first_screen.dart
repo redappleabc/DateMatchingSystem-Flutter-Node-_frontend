@@ -5,12 +5,14 @@ import 'package:flutter/services.dart';
 import 'package:flutter_line_sdk/flutter_line_sdk.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:provider/provider.dart';
+import 'package:purchases_flutter/models/offering_wrapper.dart';
 import 'package:rinlin/components/app_colors.dart';
 import 'package:rinlin/components/custom_button.dart';
 import 'package:rinlin/components/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:rinlin/components/base_screen.dart';
 import 'package:rinlin/components/custom_container.dart';
+import 'package:rinlin/purchase/purchase_api.dart';
 import 'package:rinlin/screens/services/auth_service.dart';
 import 'package:rinlin/state/user_state.dart';
 import 'package:crypto/crypto.dart';
@@ -32,6 +34,13 @@ class _FirstScreenState extends State<FirstScreen> {
   void initState() {
     getStorage();
     super.initState();
+    getoffer();
+  }
+
+  getoffer() async {
+    List<Offering> offerlist = await PurchaseApi.fetchOffers();
+    print("engthhhh${offerlist.length}");
+    setState(() {});
   }
 
   Future<void> getStorage() async {

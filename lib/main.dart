@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_line_sdk/flutter_line_sdk.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:rinlin/firebase_options.dart';
+import 'package:rinlin/purchase/purchase_api.dart';
 import 'package:rinlin/services/blockapi_service.dart';
 import 'package:rinlin/services/notificationapi_service.dart';
 import 'package:rinlin/services/postapi_service.dart';
@@ -23,6 +24,7 @@ import 'routes.dart';
 void main() async {
   await dotenv.load();
   WidgetsFlutterBinding.ensureInitialized();
+  await PurchaseApi.init();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
   OneSignal.initialize(dotenv.get('APP_ID'));
