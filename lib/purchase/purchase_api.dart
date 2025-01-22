@@ -34,7 +34,7 @@ class PurchaseApi {
 
   static Future<bool> purchasePackage(Package package) async {
     try {
-      CustomerInfo cusstome = await Purchases.purchasePackage(package);
+      CustomerInfo customer = await Purchases.purchasePackage(package);
       return true;
     } catch (e) {
       return false;

@@ -7,6 +7,8 @@ import 'package:rinlin/components/custom_text.dart';
 import 'package:rinlin/purchase/purchase_api.dart';
 import 'package:rinlin/utils/const_file.dart';
 import 'package:flutter/material.dart';
+import 'package:rinlin/state/user_state.dart';
+import 'package:provider/provider.dart';
 
 class PlanScreen extends StatefulWidget {
   const PlanScreen({super.key});
@@ -29,6 +31,77 @@ class _PlanScreenState extends State<PlanScreen> {
     print("engthhhh${offerlist[0].availablePackages}");
 
     setState(() {});
+  }
+
+  Future<void> saveSubscriptionResult(String type) async {
+    print("type=========>${type}");
+    final isSaved = await Provider.of<UserState>(context, listen: false).saveSubscriptionResult(type);
+    if (isSaved) {
+      showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (_) => Center( // Aligns the container to center
+          child: Container( // A simplified version of dialog. 
+            width: 300,
+            height: 150,
+            padding: const EdgeInsets.only(top:35),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: AppColors.primaryWhite
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  "操作が成功しました。",
+                  textAlign:TextAlign.center,
+                  style: TextStyle(
+                    color: AppColors.primaryBlack,
+                    fontWeight: FontWeight.normal,
+                    fontSize:15,
+                    letterSpacing: -1,
+                    decoration: TextDecoration.none
+                  ),
+                ),
+                const SizedBox(
+                  height: 24,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Container(
+                    width: 343,
+                    height: 42,
+                    margin: const EdgeInsets.only(top: 5),
+                    decoration: BoxDecoration(
+                      border: Border(
+                        top: BorderSide(
+                          color: AppColors.secondaryGray.withOpacity(0.5)
+                        )
+                      )
+                    ),
+                    child: MaterialButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Center(
+                        child: CustomText(
+                          text: "OK", 
+                          fontSize: 15, 
+                          fontWeight: FontWeight.normal, 
+                          lineHeight: 1, 
+                          letterSpacing: -1, 
+                          color: AppColors.alertBlue
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+            )
+          )
+      );
+    }
   }
 
   @override
@@ -270,8 +343,8 @@ class _PlanScreenState extends State<PlanScreen> {
                           child: Column(
                             children: [
                               GestureDetector(
-                                onTap: () {
-                                  var oneMonthPackages = offerlist[0]
+                                onTap: () async{
+                                  var twelveMonthPackages = offerlist[0]
                                       .availablePackages
                                       .where((package) {
                                         return package.packageType ==
@@ -279,7 +352,11 @@ class _PlanScreenState extends State<PlanScreen> {
                                       })
                                       .toList()
                                       .first;
-                                  PurchaseApi.purchasePackage(oneMonthPackages);
+                                  print("twelveMonthPackages=========>${twelveMonthPackages.identifier}");
+                                  bool ispurchase = await PurchaseApi.purchasePackage(twelveMonthPackages);
+                                  if (ispurchase) {
+                                    await saveSubscriptionResult(twelveMonthPackages.identifier);
+                                  }
                                 },
                                 child: Container(
                                   width: MediaQuery.of(context).size.width,
@@ -466,8 +543,8 @@ class _PlanScreenState extends State<PlanScreen> {
                                 ),
                               ),
                               GestureDetector(
-                                onTap: () {
-                                  var oneMonthPackages = offerlist[0]
+                                onTap: () async{
+                                  var sixMonthPackages = offerlist[0]
                                       .availablePackages
                                       .where((package) {
                                         return package.packageType ==
@@ -475,7 +552,11 @@ class _PlanScreenState extends State<PlanScreen> {
                                       })
                                       .toList()
                                       .first;
-                                  PurchaseApi.purchasePackage(oneMonthPackages);
+                                  print("sixMonthPackages=========>${sixMonthPackages.identifier}");
+                                  bool ispurchase = await PurchaseApi.purchasePackage(sixMonthPackages);
+                                  if (ispurchase) {
+                                    await saveSubscriptionResult(sixMonthPackages.identifier);
+                                  }
                                 },
                                 child: Container(
                                   width: MediaQuery.of(context).size.width,
@@ -662,7 +743,7 @@ class _PlanScreenState extends State<PlanScreen> {
                                 ),
                               ),
                               GestureDetector(
-                                onTap: () {
+                                onTap: () async{
                                   var threeMonthPackages = offerlist[0]
                                       .availablePackages
                                       .where((package) {
@@ -671,10 +752,11 @@ class _PlanScreenState extends State<PlanScreen> {
                                       })
                                       .toList()
                                       .first;
-                                  print(
-                                      "msmsmm${threeMonthPackages.identifier}");
-                                  PurchaseApi.purchasePackage(
-                                      threeMonthPackages);
+                                  print("threeMonthPackages=========>${threeMonthPackages.identifier}");
+                                  bool ispurchase = await PurchaseApi.purchasePackage(threeMonthPackages);
+                                  if (ispurchase) {
+                                    await saveSubscriptionResult(threeMonthPackages.identifier);
+                                  }
                                 },
                                 child: Container(
                                   width: MediaQuery.of(context).size.width,
@@ -871,11 +953,11 @@ class _PlanScreenState extends State<PlanScreen> {
                                       })
                                       .toList()
                                       .first;
-                                  print("msmsmm${oneMonthPackages.identifier}");
-                                  bool ispurchase =
-                                      await PurchaseApi.purchasePackage(
-                                          oneMonthPackages);
-                                  if (ispurchase) {}
+                                  print("oneMonthPackages=========>${oneMonthPackages.identifier}");
+                                  bool ispurchase = await PurchaseApi.purchasePackage(oneMonthPackages);
+                                  if (ispurchase) {
+                                    await saveSubscriptionResult(oneMonthPackages.identifier);
+                                  }
                                 },
                                 child: Container(
                                   width: MediaQuery.of(context).size.width,
