@@ -34,7 +34,6 @@ class _PlanScreenState extends State<PlanScreen> {
   }
 
   Future<void> saveSubscriptionResult(String type) async {
-    print("type=========>${type}");
     final isSaved = await Provider.of<UserState>(context, listen: false).saveSubscriptionResult(type);
     if (isSaved) {
       showDialog(
@@ -352,7 +351,6 @@ class _PlanScreenState extends State<PlanScreen> {
                                       })
                                       .toList()
                                       .first;
-                                  print("twelveMonthPackages=========>${twelveMonthPackages.identifier}");
                                   bool ispurchase = await PurchaseApi.purchasePackage(twelveMonthPackages);
                                   if (ispurchase) {
                                     await saveSubscriptionResult(twelveMonthPackages.identifier);
@@ -552,7 +550,6 @@ class _PlanScreenState extends State<PlanScreen> {
                                       })
                                       .toList()
                                       .first;
-                                  print("sixMonthPackages=========>${sixMonthPackages.identifier}");
                                   bool ispurchase = await PurchaseApi.purchasePackage(sixMonthPackages);
                                   if (ispurchase) {
                                     await saveSubscriptionResult(sixMonthPackages.identifier);
@@ -752,7 +749,6 @@ class _PlanScreenState extends State<PlanScreen> {
                                       })
                                       .toList()
                                       .first;
-                                  print("threeMonthPackages=========>${threeMonthPackages.identifier}");
                                   bool ispurchase = await PurchaseApi.purchasePackage(threeMonthPackages);
                                   if (ispurchase) {
                                     await saveSubscriptionResult(threeMonthPackages.identifier);
@@ -953,7 +949,6 @@ class _PlanScreenState extends State<PlanScreen> {
                                       })
                                       .toList()
                                       .first;
-                                  print("oneMonthPackages=========>${oneMonthPackages.identifier}");
                                   bool ispurchase = await PurchaseApi.purchasePackage(oneMonthPackages);
                                   if (ispurchase) {
                                     await saveSubscriptionResult(oneMonthPackages.identifier);
