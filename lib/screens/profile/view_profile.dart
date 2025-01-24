@@ -768,6 +768,11 @@ class _ViewProfileScreenState extends State<ViewProfileScreen> {
                               bool ispurchase =
                                   await PurchaseApi.purchasePackage(
                                       offerlist.first.availablePackages.first);
+                              if (ispurchase) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content: Text("10 coins purchased")));
+                              }
                             })),
                         Container(
                             width: 110,
@@ -779,7 +784,20 @@ class _ViewProfileScreenState extends State<ViewProfileScreen> {
                                       AssetImage("assets/images/50_point.png"),
                                   fit: BoxFit.cover),
                             ),
-                            child: MaterialButton(onPressed: () {})),
+                            child: MaterialButton(onPressed: () async {
+                              List<Offering> offerlist =
+                                  await PurchaseApi.fetchOffersById(
+                                      Coins.idCoins50);
+
+                              bool ispurchase =
+                                  await PurchaseApi.purchasePackage(
+                                      offerlist.first.availablePackages.first);
+                              if (ispurchase) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content: Text("50 coins purchased")));
+                              }
+                            })),
                         Container(
                             width: 110,
                             height: 110,
@@ -790,7 +808,20 @@ class _ViewProfileScreenState extends State<ViewProfileScreen> {
                                       AssetImage("assets/images/100_point.png"),
                                   fit: BoxFit.cover),
                             ),
-                            child: MaterialButton(onPressed: () {}))
+                            child: MaterialButton(onPressed: () async {
+                              List<Offering> offerlist =
+                                  await PurchaseApi.fetchOffersById(
+                                      Coins.idCoins100);
+
+                              bool ispurchase =
+                                  await PurchaseApi.purchasePackage(
+                                      offerlist.first.availablePackages.first);
+                              if (ispurchase) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content: Text("100 coins purchased")));
+                              }
+                            }))
                       ],
                     )
                   ],

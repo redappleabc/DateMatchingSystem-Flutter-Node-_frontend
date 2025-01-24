@@ -1,3 +1,4 @@
+import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:rinlin/components/app_colors.dart';
 import 'package:rinlin/components/base_screen.dart';
 import 'package:rinlin/components/custom_button.dart';
@@ -5,6 +6,7 @@ import 'package:rinlin/components/custom_container.dart';
 import 'package:rinlin/components/custom_text.dart';
 import 'package:rinlin/models/record_model.dart';
 import 'package:rinlin/models/user_model.dart';
+import 'package:rinlin/purchase/purchase_api.dart';
 import 'package:rinlin/state/notification_state.dart';
 import 'package:rinlin/state/post_state.dart';
 import 'package:rinlin/state/record_state.dart';
@@ -287,7 +289,20 @@ class _MaleMyPageState extends State<MaleMyPage> {
                                       AssetImage("assets/images/10_point.png"),
                                   fit: BoxFit.cover),
                             ),
-                            child: MaterialButton(onPressed: () {})),
+                            child: MaterialButton(onPressed: () async {
+                              List<Offering> offerlist =
+                                  await PurchaseApi.fetchOffersById(
+                                      Coins.idCoins10);
+
+                              bool ispurchase =
+                                  await PurchaseApi.purchasePackage(
+                                      offerlist.first.availablePackages.first);
+                              if (ispurchase) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content: Text("10 coins purchased")));
+                              }
+                            })),
                         Container(
                             width: 110,
                             height: 110,
@@ -298,7 +313,20 @@ class _MaleMyPageState extends State<MaleMyPage> {
                                       AssetImage("assets/images/50_point.png"),
                                   fit: BoxFit.cover),
                             ),
-                            child: MaterialButton(onPressed: () {})),
+                            child: MaterialButton(onPressed: () async {
+                              List<Offering> offerlist =
+                                  await PurchaseApi.fetchOffersById(
+                                      Coins.idCoins50);
+
+                              bool ispurchase =
+                                  await PurchaseApi.purchasePackage(
+                                      offerlist.first.availablePackages.first);
+                              if (ispurchase) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content: Text("50 coins purchased")));
+                              }
+                            })),
                         Container(
                             width: 110,
                             height: 110,
@@ -309,7 +337,20 @@ class _MaleMyPageState extends State<MaleMyPage> {
                                       AssetImage("assets/images/100_point.png"),
                                   fit: BoxFit.cover),
                             ),
-                            child: MaterialButton(onPressed: () {}))
+                            child: MaterialButton(onPressed: () async {
+                              List<Offering> offerlist =
+                                  await PurchaseApi.fetchOffersById(
+                                      Coins.idCoins100);
+
+                              bool ispurchase =
+                                  await PurchaseApi.purchasePackage(
+                                      offerlist.first.availablePackages.first);
+                              if (ispurchase) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content: Text("100 coins purchased")));
+                              }
+                            }))
                       ],
                     )
                   ],
