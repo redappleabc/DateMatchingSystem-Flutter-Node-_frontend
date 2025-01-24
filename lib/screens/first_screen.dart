@@ -38,9 +38,13 @@ class _FirstScreenState extends State<FirstScreen> {
   }
 
   getoffer() async {
-    List<Offering> offerlist = await PurchaseApi.fetchOffers();
-    print("engthhhh${offerlist.length}");
-    setState(() {});
+    List<Offering> offerlist = await PurchaseApi.fetchOffersByIds(Coins.allIds);
+    for (Offering product in offerlist) {
+      print("Product ID: ${product.identifier}");
+      print("Price: ${product.availablePackages.first.storeProduct.title}");
+      print(
+          "Title: ${product.availablePackages.first.storeProduct.description}");
+    }
   }
 
   Future<void> getStorage() async {

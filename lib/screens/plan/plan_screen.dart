@@ -27,79 +27,75 @@ class _PlanScreenState extends State<PlanScreen> {
   }
 
   getoffer() async {
-    offerlist = await PurchaseApi.fetchOffers(showcoin: false);
+    offerlist = await PurchaseApi.fetchOffers(all: false);
     print("engthhhh${offerlist[0].availablePackages}");
 
     setState(() {});
   }
 
   Future<void> saveSubscriptionResult(String type) async {
-    final isSaved = await Provider.of<UserState>(context, listen: false).saveSubscriptionResult(type);
+    final isSaved = await Provider.of<UserState>(context, listen: false)
+        .saveSubscriptionResult(type);
     if (isSaved) {
       showDialog(
-        barrierDismissible: false,
-        context: context,
-        builder: (_) => Center( // Aligns the container to center
-          child: Container( // A simplified version of dialog. 
-            width: 300,
-            height: 150,
-            padding: const EdgeInsets.only(top:35),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: AppColors.primaryWhite
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  "操作が成功しました。",
-                  textAlign:TextAlign.center,
-                  style: TextStyle(
-                    color: AppColors.primaryBlack,
-                    fontWeight: FontWeight.normal,
-                    fontSize:15,
-                    letterSpacing: -1,
-                    decoration: TextDecoration.none
-                  ),
-                ),
-                const SizedBox(
-                  height: 24,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
+          barrierDismissible: false,
+          context: context,
+          builder: (_) => Center(
+                  // Aligns the container to center
                   child: Container(
-                    width: 343,
-                    height: 42,
-                    margin: const EdgeInsets.only(top: 5),
-                    decoration: BoxDecoration(
-                      border: Border(
-                        top: BorderSide(
-                          color: AppColors.secondaryGray.withOpacity(0.5)
-                        )
-                      )
+                // A simplified version of dialog.
+                width: 300,
+                height: 150,
+                padding: const EdgeInsets.only(top: 35),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: AppColors.primaryWhite),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      "操作が成功しました。",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          color: AppColors.primaryBlack,
+                          fontWeight: FontWeight.normal,
+                          fontSize: 15,
+                          letterSpacing: -1,
+                          decoration: TextDecoration.none),
                     ),
-                    child: MaterialButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: Center(
-                        child: CustomText(
-                          text: "OK", 
-                          fontSize: 15, 
-                          fontWeight: FontWeight.normal, 
-                          lineHeight: 1, 
-                          letterSpacing: -1, 
-                          color: AppColors.alertBlue
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Container(
+                        width: 343,
+                        height: 42,
+                        margin: const EdgeInsets.only(top: 5),
+                        decoration: BoxDecoration(
+                            border: Border(
+                                top: BorderSide(
+                                    color: AppColors.secondaryGray
+                                        .withOpacity(0.5)))),
+                        child: MaterialButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Center(
+                            child: CustomText(
+                                text: "OK",
+                                fontSize: 15,
+                                fontWeight: FontWeight.normal,
+                                lineHeight: 1,
+                                letterSpacing: -1,
+                                color: AppColors.alertBlue),
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                )
-              ],
-            ),
-            )
-          )
-      );
+                    )
+                  ],
+                ),
+              )));
     }
   }
 
@@ -342,7 +338,7 @@ class _PlanScreenState extends State<PlanScreen> {
                           child: Column(
                             children: [
                               GestureDetector(
-                                onTap: () async{
+                                onTap: () async {
                                   var twelveMonthPackages = offerlist[0]
                                       .availablePackages
                                       .where((package) {
@@ -351,9 +347,12 @@ class _PlanScreenState extends State<PlanScreen> {
                                       })
                                       .toList()
                                       .first;
-                                  bool ispurchase = await PurchaseApi.purchasePackage(twelveMonthPackages);
+                                  bool ispurchase =
+                                      await PurchaseApi.purchasePackage(
+                                          twelveMonthPackages);
                                   if (ispurchase) {
-                                    await saveSubscriptionResult(twelveMonthPackages.identifier);
+                                    await saveSubscriptionResult(
+                                        twelveMonthPackages.identifier);
                                   }
                                 },
                                 child: Container(
@@ -541,7 +540,7 @@ class _PlanScreenState extends State<PlanScreen> {
                                 ),
                               ),
                               GestureDetector(
-                                onTap: () async{
+                                onTap: () async {
                                   var sixMonthPackages = offerlist[0]
                                       .availablePackages
                                       .where((package) {
@@ -550,9 +549,12 @@ class _PlanScreenState extends State<PlanScreen> {
                                       })
                                       .toList()
                                       .first;
-                                  bool ispurchase = await PurchaseApi.purchasePackage(sixMonthPackages);
+                                  bool ispurchase =
+                                      await PurchaseApi.purchasePackage(
+                                          sixMonthPackages);
                                   if (ispurchase) {
-                                    await saveSubscriptionResult(sixMonthPackages.identifier);
+                                    await saveSubscriptionResult(
+                                        sixMonthPackages.identifier);
                                   }
                                 },
                                 child: Container(
@@ -740,7 +742,7 @@ class _PlanScreenState extends State<PlanScreen> {
                                 ),
                               ),
                               GestureDetector(
-                                onTap: () async{
+                                onTap: () async {
                                   var threeMonthPackages = offerlist[0]
                                       .availablePackages
                                       .where((package) {
@@ -749,9 +751,12 @@ class _PlanScreenState extends State<PlanScreen> {
                                       })
                                       .toList()
                                       .first;
-                                  bool ispurchase = await PurchaseApi.purchasePackage(threeMonthPackages);
+                                  bool ispurchase =
+                                      await PurchaseApi.purchasePackage(
+                                          threeMonthPackages);
                                   if (ispurchase) {
-                                    await saveSubscriptionResult(threeMonthPackages.identifier);
+                                    await saveSubscriptionResult(
+                                        threeMonthPackages.identifier);
                                   }
                                 },
                                 child: Container(
@@ -949,9 +954,12 @@ class _PlanScreenState extends State<PlanScreen> {
                                       })
                                       .toList()
                                       .first;
-                                  bool ispurchase = await PurchaseApi.purchasePackage(oneMonthPackages);
+                                  bool ispurchase =
+                                      await PurchaseApi.purchasePackage(
+                                          oneMonthPackages);
                                   if (ispurchase) {
-                                    await saveSubscriptionResult(oneMonthPackages.identifier);
+                                    await saveSubscriptionResult(
+                                        oneMonthPackages.identifier);
                                   }
                                 },
                                 child: Container(

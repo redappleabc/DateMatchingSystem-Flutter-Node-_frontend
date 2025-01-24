@@ -19,17 +19,25 @@ class PurchaseApi {
     await Purchases.setup(_apiKey);
   }
 
-  static Future<List<Offering>> fetchOffers({bool showcoin = false}) async {
+  static Future<List<Offering>> fetchOffers({bool all = true}) async {
     final offerings = await Purchases.getOfferings();
-    //final offerings = await Purchases.getOfferings();
-    final current = offerings.current;
-    // return current == null ? [] : [current];
 
-    return showcoin
-        ? offerings.all.values.toList()
-        : current == null
-            ? []
-            : [current];
+    if (!all) {
+      final current = offerings.current;
+      return current == null ? [] : [current];
+    } else {
+      return offerings.all.values.toList();
+    }
+  }
+
+  static Future<List<Offering>> fetchOffersByIds(List<String> ids) async {
+    final offers = await fetchOffers();
+    return offers.where((offer) => ids.contains(offer.identifier)).toList();
+  }
+
+  static Future<List<Offering>> fetchOffersById(String ids) async {
+    final offers = await fetchOffers();
+    return offers.where((offer) => ids.contains(offer.identifier)).toList();
   }
 
   static Future<bool> purchasePackage(Package package) async {
