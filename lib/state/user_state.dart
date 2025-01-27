@@ -462,4 +462,8 @@ class UserState with ChangeNotifier {
   Future<bool> saveSubscriptionResult(String type) async {
     return await userApiService.saveSubscriptionResult(type);
   }
+  Future<bool> saveBuyPointsResult(int points) async {
+    return await userApiService.saveBuyPointsResult(points);
+  }
+
 }

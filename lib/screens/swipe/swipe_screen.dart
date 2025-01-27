@@ -1026,9 +1026,11 @@ class _SwipeScreenState extends State<SwipeScreen> {
                                   await PurchaseApi.purchasePackage(
                                       offerlist.first.availablePackages.first);
                               if (ispurchase) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                        content: Text("10 coins purchased")));
+                                bool isSaved = await Provider.of<UserState>(context, listen: false).saveBuyPointsResult(10);
+                                if (isSaved) {  
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(content: Text("10ポイント購入")));
+                                }
                               }
                             })),
                         Container(
@@ -1050,9 +1052,11 @@ class _SwipeScreenState extends State<SwipeScreen> {
                                   await PurchaseApi.purchasePackage(
                                       offerlist.first.availablePackages.first);
                               if (ispurchase) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                        content: Text("50 coins purchased")));
+                                bool isSaved = await Provider.of<UserState>(context, listen: false).saveBuyPointsResult(50);
+                                if (isSaved) {  
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(content: Text("50ポイント購入")));
+                                }
                               }
                             })),
                         Container(
@@ -1074,9 +1078,11 @@ class _SwipeScreenState extends State<SwipeScreen> {
                                   await PurchaseApi.purchasePackage(
                                       offerlist.first.availablePackages.first);
                               if (ispurchase) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                        content: Text("100 coins purchased")));
+                                bool isSaved = await Provider.of<UserState>(context, listen: false).saveBuyPointsResult(100);
+                                if (isSaved) {  
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(content: Text("100ポイント購入")));
+                                }
                               }
                             }))
                       ],
