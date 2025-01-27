@@ -1635,7 +1635,7 @@ class UserApiService {
     String? userId = await storage.read(key: 'userId');
     String? accessToken = await storage.read(key: 'accessToken');
     final response = await http.post(
-      Uri.parse('$baseUrl/api/auth/save_subscription'),
+      Uri.parse('$baseUrl/api/auth/save_buypointsresult'),
       body: jsonEncode(<String, String>{
         'id': userId!,
         'points': points.toString(),
