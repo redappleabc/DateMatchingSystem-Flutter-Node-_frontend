@@ -2,7 +2,7 @@
   "project_info": {
     "project_number": "143345546135",
     "project_id": "rinlin-dceb1",
-    "storage_bucket": "rinlin-dceb1.appspot.com"
+    "storage_bucket": "rinlin-dceb1.firebasestorage.app"
   },
   "client": [
     {
@@ -13,6 +13,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "143345546135-gotnc2674jnglk3268j2jqead2fn9ii3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.develope.rinlin",
+            "certificate_hash": "5006271a8e67bb711d2d0d1c026bae2c8a8fed38"
+          }
+        },
         {
           "client_id": "143345546135-qesi860dkk69537dkui2ip126rbo2q1s.apps.googleusercontent.com",
           "client_type": 1,
@@ -42,7 +50,7 @@
               "client_id": "143345546135-48v5qgonch0uv1o8hj2lduiv7js83bie.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.app.rinlin"
+                "bundle_id": "com.example.flutterBasicTemplate"
               }
             }
           ]

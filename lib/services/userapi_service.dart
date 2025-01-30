@@ -1588,7 +1588,6 @@ class UserApiService {
     } else {
       return false;
     }
-    
   }
 
   Future<bool> getIsRegisterd() async {
@@ -1599,6 +1598,48 @@ class UserApiService {
     }
     final response = await http.get(
       Uri.parse('$baseUrl/api/auth/get_isregistered?userId=$userId'),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+    );
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  Future<bool> saveSubscriptionResult(String type) async {
+    String? userId = await storage.read(key: 'userId');
+    String? accessToken = await storage.read(key: 'accessToken');
+    final response = await http.post(
+      Uri.parse('$baseUrl/api/auth/save_subscription'),
+      body: jsonEncode(<String, String>{
+        'id': userId!,
+        'type': type,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $accessToken',
+      },
+    );
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  Future<bool> saveBuyPointsResult(int points) async {
+    String? userId = await storage.read(key: 'userId');
+    String? accessToken = await storage.read(key: 'accessToken');
+    final response = await http.post(
+      Uri.parse('$baseUrl/api/auth/save_buypointsresult'),
+      body: jsonEncode(<String, String>{
+        'id': userId!,
+        'points': points.toString(),
+      }),
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer $accessToken',

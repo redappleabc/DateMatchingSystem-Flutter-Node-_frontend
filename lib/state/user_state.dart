@@ -459,13 +459,11 @@ class UserState with ChangeNotifier {
   Future<bool> getIsRegistered() async {
     return await userApiService.getIsRegisterd();
   }
+  Future<bool> saveSubscriptionResult(String type) async {
+    return await userApiService.saveSubscriptionResult(type);
+  }
+  Future<bool> saveBuyPointsResult(int points) async {
+    return await userApiService.saveBuyPointsResult(points);
+  }
 
-  // Future<void> checkAuthStatus() async {
-  //   _isAuthenticated = await userApiService.isAuthenticated();
-  //   notifyListeners();
-  // }
-
-  // Future<void> scheduleTokenRefresh() async {
-  //   userApiService.scheduleTokenRefresh();
-  // }
 }

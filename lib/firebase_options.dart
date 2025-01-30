@@ -55,17 +55,18 @@ class DefaultFirebaseOptions {
     appId: '1:143345546135:android:cadcd9853a6ee7e9f00ad2',
     messagingSenderId: '143345546135',
     projectId: 'rinlin-dceb1',
-    storageBucket: 'rinlin-dceb1.appspot.com',
+    storageBucket: 'rinlin-dceb1.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyBx9qSq69j6kxmtwQEaP2T8PYRgIShvsH0',
-    appId: '1:143345546135:ios:e039d572efe662e1f00ad2',
+    appId: '1:143345546135:ios:6819047cc26f560ef00ad2',
     messagingSenderId: '143345546135',
     projectId: 'rinlin-dceb1',
-    storageBucket: 'rinlin-dceb1.appspot.com',
-    iosClientId: '143345546135-48v5qgonch0uv1o8hj2lduiv7js83bie.apps.googleusercontent.com',
-    iosBundleId: 'com.app.rinliln',
+    storageBucket: 'rinlin-dceb1.firebasestorage.app',
+    androidClientId: '143345546135-gotnc2674jnglk3268j2jqead2fn9ii3.apps.googleusercontent.com',
+    iosClientId: '143345546135-qndv92nia68fvcobum8fgv11m3lafeak.apps.googleusercontent.com',
+    iosBundleId: 'com.app.rinlin',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(

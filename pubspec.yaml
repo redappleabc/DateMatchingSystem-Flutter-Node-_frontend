@@ -1,7 +1,7 @@
 name: rinlin
 description: "A new Flutter project."
 publish_to: 'none'
-version: 1.0.0+1
+version: 1.0.0+2
 
 environment:
   sdk: '>=3.3.3 <4.0.0'
@@ -38,6 +38,8 @@ dependencies:
   onesignal_flutter: ^5.2.5
   flutter_line_sdk: ^2.3.8
   sign_in_with_apple: ^6.1.3
+  purchases_flutter: ^8.4.1
+  
 
 
 dev_dependencies:
